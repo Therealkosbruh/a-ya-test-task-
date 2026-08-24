@@ -1,6 +1,7 @@
 import type { IconName } from "@/shared/ui/icon/Icon";
 
-export type InfoBlockStatus = "loading" | "error" | "empty" | "notFound";
+export type InfoBlockStatus =
+  "loading" | "error" | "empty" | "notFound" | "emptyCart";
 
 interface InfoBlockContent {
   icon: IconName;
@@ -30,6 +31,12 @@ const CONTENT_BY_STATUS: Record<
     title: "Такого товара нет",
     text: "Возможно, ссылка устарела или товар сняли с продажи.",
     actionLabel: "Вернуться в каталог",
+  },
+  emptyCart: {
+    icon: "cart",
+    title: "В корзине пока пусто",
+    text: "Загляните в каталог, чтобы что-то выбрать.",
+    actionLabel: "В каталог",
   },
 };
 

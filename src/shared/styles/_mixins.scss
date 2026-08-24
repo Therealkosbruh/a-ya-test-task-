@@ -21,6 +21,8 @@
 }
 
 @mixin icon {
+  display: block;
+  flex-shrink: 0;
   width: 18px;
   height: 18px;
   fill: none;

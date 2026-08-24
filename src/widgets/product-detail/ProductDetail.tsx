@@ -66,6 +66,8 @@ export function ProductDetail({ product, allSizes }: Props): ReactElement {
             description={selectedColor.description}
           />
           <ProductOptions
+            productId={product.id}
+            productName={product.name}
             colors={product.colors}
             sizes={allSizes}
             selectedColorId={selectedColorId}
