@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
-  const nonce = (await headers()).get("x-nonce");
+  await headers();
 
   return (
     <html

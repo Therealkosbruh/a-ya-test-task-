@@ -1,0 +1,94 @@
+@use "@/shared/styles/variables" as *;
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.mainImage {
+  position: relative;
+  aspect-ratio: 4/5;
+  border-radius: $r-xl;
+  overflow: hidden;
+}
+
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: $r-pill;
+  border: 0;
+  padding: 0;
+  background: rgba($cream, 0.9);
+  box-shadow: $shadow-soft;
+  color: $ink-soft;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.navButtonPrev {
+  left: 18px;
+}
+
+.navButtonNext {
+  right: 18px;
+}
+
+.navIcon {
+  transform: rotate(-90deg);
+}
+
+.navIconNext {
+  transform: rotate(90deg);
+}
+
+.pagination {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: $r-pill;
+  border: 0;
+  padding: 0;
+  background: rgba($sage-soft, 0.35);
+  cursor: pointer;
+}
+
+.dotActive {
+  width: 22px;
+  height: 6px;
+  background: $sage-soft;
+}
+
+.thumbnails {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.thumbnail {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.thumbnailActive {
+  border: 1.5px solid $sage;
+}

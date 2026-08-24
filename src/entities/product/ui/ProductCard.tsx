@@ -4,9 +4,11 @@ import type { Product } from "@/shared/api/types";
 import { getCheapestProductColor } from "@/entities/product/lib/get-cheapest-color";
 import { getProductMinPrice } from "@/entities/product/lib/get-min-price";
 import { isProductInStock } from "@/entities/product/lib/is-in-stock";
+import { buildProductJsonLd } from "@/entities/product/lib/build-product-json-ld";
 import { formatPrice } from "@/shared/lib/format-price";
 import { pluralize } from "@/shared/lib/pluralize";
 import { joinClassNames } from "@/shared/lib/join-class-names";
+import { toSafeJson } from "@/shared/lib/to-safe-json";
 import styles from "./ProductCard.module.scss";
 
 type Props = {
@@ -14,52 +16,12 @@ type Props = {
   priority?: boolean;
 };
 
-interface ProductJsonLd {
-  "@context": "https://schema.org";
-  "@type": "Product";
-  name: string;
-  image: string[];
-  brand: {
-    "@type": "Brand";
-    name: string;
-  };
-  offers: {
-    "@type": "Offer";
-    price: number;
-    priceCurrency: "RUB";
-    availability:
-      "https://schema.org/InStock" | "https://schema.org/OutOfStock";
-  };
-}
-
-function toSafeJson(value: unknown): string {
-  return JSON.stringify(value).replace(/</g, "\\u003c");
-}
-
 export default function ProductCard({ product, priority = false }: Props) {
   const cheapestColor = getCheapestProductColor(product);
   const minPrice = getProductMinPrice(product);
   const inStock = isProductInStock(product);
   const colorsCount = product.colors.length;
-
-  const jsonLd: ProductJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: product.name,
-    image: product.colors.flatMap((color) => color.images),
-    brand: {
-      "@type": "Brand",
-      name: product.brand,
-    },
-    offers: {
-      "@type": "Offer",
-      price: minPrice,
-      priceCurrency: "RUB",
-      availability: inStock
-        ? "https://schema.org/InStock"
-        : "https://schema.org/OutOfStock",
-    },
-  };
+  const jsonLd = buildProductJsonLd(product);
 
   return (
     <Link

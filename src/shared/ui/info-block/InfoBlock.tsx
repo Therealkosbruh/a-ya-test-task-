@@ -1,4 +1,5 @@
 import type { ReactElement } from "react";
+import Link from "next/link";
 import { Icon } from "@/shared/ui/icon/Icon";
 import { getInfoBlockContent, type InfoBlockStatus } from "./lib/contentHelper";
 import styles from "./InfoBlock.module.scss";
@@ -6,11 +7,16 @@ import styles from "./InfoBlock.module.scss";
 interface Props {
   status: InfoBlockStatus;
   onAction?: () => void;
+  actionHref?: string;
 }
 
 const SKELETON_CARDS_COUNT = 8;
 
-export function InfoBlock({ status, onAction }: Props): ReactElement {
+export function InfoBlock({
+  status,
+  onAction,
+  actionHref,
+}: Props): ReactElement {
   if (status === "loading") {
     return (
       <div className={styles.skeletonGrid}>
@@ -38,10 +44,20 @@ export function InfoBlock({ status, onAction }: Props): ReactElement {
       </div>
       <h2 className={styles.stateTitle}>{content.title}</h2>
       <p className={styles.stateText}>{content.text}</p>
-      {onAction && (
-        <button type="button" className={styles.stateAction} onClick={onAction}>
+      {actionHref ? (
+        <Link href={actionHref} className={styles.stateAction}>
           {content.actionLabel}
-        </button>
+        </Link>
+      ) : (
+        onAction && (
+          <button
+            type="button"
+            className={styles.stateAction}
+            onClick={onAction}
+          >
+            {content.actionLabel}
+          </button>
+        )
       )}
     </div>
   );

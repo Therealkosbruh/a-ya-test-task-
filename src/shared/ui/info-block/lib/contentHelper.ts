@@ -1,6 +1,6 @@
 import type { IconName } from "@/shared/ui/icon/Icon";
 
-export type InfoBlockStatus = "loading" | "error" | "empty";
+export type InfoBlockStatus = "loading" | "error" | "empty" | "notFound";
 
 interface InfoBlockContent {
   icon: IconName;
@@ -24,6 +24,12 @@ const CONTENT_BY_STATUS: Record<
     title: "Ничего не нашлось",
     text: "Попробуйте изменить запрос или отключить фильтр «в наличии».",
     actionLabel: "Сбросить фильтры",
+  },
+  notFound: {
+    icon: "search",
+    title: "Такого товара нет",
+    text: "Возможно, ссылка устарела или товар сняли с продажи.",
+    actionLabel: "Вернуться в каталог",
   },
 };
 

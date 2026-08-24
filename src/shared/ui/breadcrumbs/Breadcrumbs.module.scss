@@ -1,0 +1,32 @@
+@use "@/shared/styles/variables" as *;
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 13px;
+  font-weight: 300;
+  color: $ink-soft;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+
+  a {
+    color: $ink-soft;
+    text-decoration: none;
+
+    &:hover {
+      color: $ink;
+    }
+  }
+
+  span[aria-current="page"] {
+    color: $sage;
+  }
+}
+
+.separator {
+  margin: 0 10px;
+}

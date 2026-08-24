@@ -1,0 +1,50 @@
+@use "@/shared/styles/variables" as *;
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 400;
+  color: $ink-soft;
+}
+
+.colors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.addButton {
+  width: 100%;
+  max-width: 520px;
+  height: 58px;
+  border-radius: $r-pill;
+  background: $ink;
+  color: $on-dark;
+  font-size: 15px;
+  letter-spacing: 0.03em;
+  border: 0;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}

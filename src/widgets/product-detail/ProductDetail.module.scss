@@ -1,0 +1,23 @@
+@use "@/shared/styles/variables" as *;
+
+.wrapper {
+  padding: 40px 56px 64px;
+}
+
+.article {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+
+  @media (max-width: 860px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding-top: 12px;
+}

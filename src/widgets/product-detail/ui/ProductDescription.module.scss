@@ -1,0 +1,40 @@
+@use "@/shared/styles/variables" as *;
+@use "@/shared/styles/mixins" as *;
+
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.brand {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: $sage;
+}
+
+.name {
+  margin: 0;
+  @include script(52px, 300);
+  color: $ink;
+}
+
+.price {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  color: $ink;
+}
+
+.text {
+  margin: 8px 0 0;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: $ink-soft;
+  max-width: 520px;
+}
