@@ -1,0 +1,90 @@
+@use "@/shared/styles/variables" as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-decoration: none;
+}
+
+.cardMedia {
+  position: relative;
+  transition: transform 0.25s ease;
+}
+
+.cardImg {
+  position: relative;
+  aspect-ratio: 3/4;
+  border-radius: $r-md;
+  overflow: hidden;
+  transition: box-shadow 0.25s ease;
+}
+
+.cardQuick {
+  position: absolute;
+  inset: auto 14px 14px;
+  padding: 11px;
+  border-radius: $r-sm;
+  background: $pistachio;
+  text-align: center;
+  font: 400 13px/1 $font-sans;
+  color: $ink;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cardTitle {
+  margin: 0;
+  font: 400 15px/1.3 $font-sans;
+  color: $ink;
+}
+
+.cardMeta {
+  margin: 0;
+  font: 300 12px/1 $font-sans;
+  color: $sage;
+}
+
+.cardPrice {
+  margin: 0;
+  font: 400 15px/1 $font-sans;
+  color: $ink;
+}
+
+.card:hover {
+  .cardMedia {
+    transform: translateY(-8px);
+  }
+
+  .cardImg {
+    box-shadow: $shadow-card;
+  }
+
+  .cardQuick {
+    opacity: 1;
+  }
+}
+
+.cardSoldOut {
+  .cardImg,
+  .cardInfo {
+    opacity: 0.6;
+  }
+}
+
+.cardBadge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 6px 12px;
+  border-radius: $r-pill;
+  background: $beige;
+  font: 400 11px/1 $font-sans;
+  color: $ink-soft;
+}

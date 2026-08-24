@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import { fontScript, fontSans, fontMono } from "@/shared/config/fonts";
 import { Header } from "@/widgets/header/Header";
 import { Footer } from "@/widgets/footer/Footer";
+import { Providers } from "./providers";
 import "./globals.scss";
 
 export const metadata: Metadata = {
@@ -19,9 +20,11 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       className={`${fontScript.variable} ${fontSans.variable} ${fontMono.variable}`}
     >
       <body>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <Providers>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

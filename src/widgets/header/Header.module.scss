@@ -5,8 +5,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 40px;
   padding: 30px 56px;
   border-bottom: 1px solid $beige-line;
+
+  @media (max-width: 640px) {
+    gap: 24px;
+    padding: 20px 20px;
+  }
 }
 
 .headerLeft {
@@ -25,17 +31,6 @@
   display: flex;
   align-items: center;
   gap: 18px;
-}
-
-.iconBtn {
-  display: grid;
-  place-items: center;
-  width: 20px;
-  height: 20px;
-  background: none;
-  border: 0;
-  color: $ink-soft;
-  cursor: pointer;
 }
 
 .cartPill {

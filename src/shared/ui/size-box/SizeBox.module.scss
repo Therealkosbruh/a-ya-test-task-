@@ -1,0 +1,40 @@
+@use "@/shared/styles/variables" as *;
+
+.box {
+  position: relative;
+  flex-shrink: 0;
+  width: 60px;
+  height: 48px;
+  border-radius: 14px;
+  border: 1px solid $beige;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  font-weight: 300;
+  color: $ink-soft;
+  background: none;
+  cursor: pointer;
+}
+
+.isSelected {
+  background: $pistachio;
+  color: $ink;
+  border-color: $pistachio;
+}
+
+.isDisabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  color: $disabled;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 70%;
+    height: 1px;
+    background: $disabled;
+    transform: rotate(-20deg);
+  }
+}

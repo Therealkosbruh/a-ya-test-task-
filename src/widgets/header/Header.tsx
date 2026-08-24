@@ -12,9 +12,6 @@ export function Header(): ReactElement {
         </Link>
       </div>
       <div className={styles.headerRight}>
-        <button type="button" className={styles.iconBtn} aria-label="Поиск">
-          <Icon name="search" />
-        </button>
         <Link href="/cart" className={styles.cartPill} aria-label="Корзина">
           <Icon name="cart" />
           <span>0 · 0 ₽</span>
