@@ -1,0 +1,31 @@
+@use "variables" as *;
+
+@mixin script($size, $w: 300) {
+  font-family: $font-script;
+  font-style: italic;
+  font-weight: $w;
+  font-size: $size;
+  line-height: 1.05;
+}
+
+@mixin meta {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: $sage-pale;
+}
+
+@mixin placeholder-img($a: #f0e9da, $b: #e8dfce) {
+  background: repeating-linear-gradient(135deg, $a 0 7px, $b 7px 14px);
+}
+
+@mixin icon {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

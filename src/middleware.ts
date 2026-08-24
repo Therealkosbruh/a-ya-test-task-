@@ -6,9 +6,14 @@ function generateNonce(): string {
 }
 
 function buildContentSecurityPolicy(nonce: string): string {
+  const isDevelopment = process.env.NODE_ENV === "development";
+  const scriptSrc = isDevelopment
+    ? `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'unsafe-eval'`
+    : `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'`;
+
   return [
     "default-src 'self'",
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'`,
+    scriptSrc,
     "style-src 'self' 'unsafe-inline'",
     "connect-src 'self'",
     "img-src 'self'",

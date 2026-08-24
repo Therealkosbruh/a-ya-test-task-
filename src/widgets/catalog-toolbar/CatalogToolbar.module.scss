@@ -1,0 +1,120 @@
+@use "@/shared/styles/variables" as *;
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+  padding: 22px 56px;
+  border-bottom: 1px solid $beige-line;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 340px;
+  padding: 11px 18px;
+  border-radius: $r-pill;
+  background: $cream-input;
+  color: $ink-soft;
+  cursor: text;
+
+  input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+    outline: none;
+    font: 300 14px/1 $font-sans;
+    color: $ink;
+
+    &::-webkit-search-cancel-button {
+      appearance: none;
+    }
+  }
+}
+
+.switchRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font: 300 14px/1 $font-sans;
+  color: $ink-soft;
+  cursor: pointer;
+  user-select: none;
+}
+
+.switchTrack {
+  position: relative;
+  flex-shrink: 0;
+  width: 38px;
+  height: 22px;
+  border-radius: $r-pill;
+  background: $beige;
+  transition: background 0.2s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: $cream;
+    box-shadow: $shadow-soft;
+    transition: transform 0.2s ease;
+  }
+}
+
+.switchRow input:checked + .switchTrack {
+  background: $pistachio;
+}
+
+.switchRow input:checked + .switchTrack::before {
+  transform: translateX(16px);
+}
+
+.switchRow input:focus-visible + .switchTrack {
+  outline: 2px solid $sage;
+  outline-offset: 2px;
+}
+
+.sort {
+  display: flex;
+  border: 1px solid $beige;
+  border-radius: $r-pill;
+  overflow: hidden;
+  margin-left: auto;
+}
+
+.sortOpt {
+  padding: 10px 16px;
+  border: 0;
+  background: transparent;
+  font: 300 13px/1 $font-sans;
+  color: $ink-soft;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+
+  &.isActive {
+    background: #f0eadc;
+    color: $ink;
+    font-weight: 400;
+  }
+}

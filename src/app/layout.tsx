@@ -1,17 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import { headers } from "next/headers";
-import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { fontScript, fontSans, fontMono } from "@/shared/config/fonts";
+import { Header } from "@/widgets/header/Header";
+import { Footer } from "@/widgets/footer/Footer";
+import "./globals.scss";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,8 +14,15 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   const nonce = (await headers()).get("x-nonce");
 
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>{children}</body>
+    <html
+      lang="ru"
+      className={`${fontScript.variable} ${fontSans.variable} ${fontMono.variable}`}
+    >
+      <body>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }

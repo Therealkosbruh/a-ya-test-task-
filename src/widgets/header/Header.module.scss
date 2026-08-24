@@ -1,0 +1,51 @@
+@use "@/shared/styles/variables" as *;
+@use "@/shared/styles/mixins" as *;
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 56px;
+  border-bottom: 1px solid $beige-line;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: baseline;
+  gap: 44px;
+}
+
+.logo {
+  @include script(34px, 400);
+  color: $ink;
+  text-decoration: none;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.iconBtn {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  background: none;
+  border: 0;
+  color: $ink-soft;
+  cursor: pointer;
+}
+
+.cartPill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 20px;
+  border-radius: $r-pill;
+  background: $pistachio;
+  color: $ink;
+  font: 400 13px/1 $font-sans;
+  text-decoration: none;
+}

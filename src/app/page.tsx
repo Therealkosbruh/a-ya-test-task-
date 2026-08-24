@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import styles from "./page.module.css";
+
+export const metadata: Metadata = {
+  title: "Каталог товаров",
+  description:
+    "Каталог одежды с поиском по названию, фильтром по наличию и сортировкой по цене.",
+};
 
 export default function Home() {
   return (
