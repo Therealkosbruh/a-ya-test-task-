@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const color = getCheapestProductColor(product);
 
   return {
-    title: `${product.name} — ${product.brand}`,
+    title: `${product.name} - ${product.brand}`,
     description: `${color.description} Цена от ${formatPrice(getProductMinPrice(product))}.`,
   };
 }

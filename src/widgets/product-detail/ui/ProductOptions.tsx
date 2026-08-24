@@ -59,7 +59,7 @@ export function ProductOptions({
   return (
     <div className={styles.options}>
       <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Цвет — {selectedColor.name}</h2>
+        <h2 className={styles.sectionTitle}>Цвет - {selectedColor.name}</h2>
         <div className={styles.colors}>
           {colors.map((color) => (
             <ColorSwatch
@@ -75,7 +75,7 @@ export function ProductOptions({
 
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>
-          Размер — {selectedSize ? selectedSize.name : "не выбран"}
+          Размер - {selectedSize ? selectedSize.name : "не выбран"}
         </h2>
         <div className={styles.sizes}>
           {sizes.map((size) => (

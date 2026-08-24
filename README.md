@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## О проекте
 
-## Getting Started
+Мини-каталог одежды на Next.js (App Router). Данные о товарах отдаёт psevdo-API (`src/shared/api/mock-server`), обёрнутый типизированным слоем и route handler'ами.
 
-First, run the development server:
+Архитектура - Feature-Sliced Design (`app → widgets → features → entities → shared`). Next.js App Router занимает слой `app` (роутинг, layout, глобальные стили, провайдеры), слой `pages` не используется - композиция страниц собирается в `widgets`.
+
+Реализованные фичи:
+
+- Список товаров: поиск по названию, фильтр «в наличии», фильтры по категории/бренду/цвету/размеру (мультиселект), фильтр по цене от/до, сортировка по цене, курсорная виртуализация с подгрузкой по скроллу (IntersectionObserver)
+- Фильтры сохраняются в localStorage и переживают перезагрузку/переход между страницами
+- Динамическая карточка товара: галерея изображений, выбор цвета и размера, добавление в корзину, обработка на несуществующий товар
+- Корзина, сохранение в localStorage
+- Динамические `title`/`description` по каждому товару, JSON-LD (schema.org `Product`, `BreadcrumbList`) на карточках и хлебных крошках
+
+## Стек
+
+| Категория      | Технология            |
+| -------------- | --------------------- |
+| Framework      | Next.js (App Router)  |
+| Язык           | TypeScript            |
+| Стили          | SCSS (CSS Modules)    |
+| Стейт-менеджер | Zustand (с `persist`) |
+| Server state   | TanStack Query        |
+| Форматирование | Prettier + ESLint     |
+| Git hooks      | Husky + lint-staged   |
+
+## Запуск локально
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Приложение поднимется на [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Структура проекта
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+├── app/                    # роутинг Next.js (страницы, layout, route handlers)
+│   ├── api/                # REST-обёртка над psevdo-API (products, categories, brands, colors, sizes)
+│   ├── products/[id]/      # динамическая страница товара
+│   └── cart/                # страница корзины
+│
+├── widgets/                 # крупные самостоятельные блоки страниц
+│   ├── header/, footer/     # общая разметка
+│   ├── product-catalog/     # композиция страницы каталога
+│   ├── product-grid/        # список товаров с виртуализацией подгрузки
+│   ├── catalog-toolbar/     # поиск, "в наличии", сортировка
+│   ├── product-detail/      # композиция карточки товара (галерея, описание, опции)
+│   └── cart/                 # композиция страницы корзины
+│
+├── features/
+│   └── product-filters/     # фильтры каталога (стор + UI-сайдбар)
+│
+├── entities/                # бизнес-сущности: типы, api-хуки, доменная логика
+│   ├── product/, category/, size/
+│   └── cart/                # стор корзины, подсчёт позиций/суммы
+│
+└── shared/
+    ├── api/                 # типы данных, typed pseudo-api (mock-server)
+    ├── ui/                  # Icon, ColorSwatch, SizeBox, InfoBlock, Breadcrumbs...
+    ├── lib/                 # чистые хелперы (formatPrice, pluralize, joinClassNames...)
+    └── styles/                # SCSS-токены и миксины
+```
